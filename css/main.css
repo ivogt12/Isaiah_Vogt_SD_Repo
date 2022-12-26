@@ -3,33 +3,53 @@
 }
 h1 {
     text-align: center;
-    grid-column: 2;
 }
-body {
-    display: grid;
-    grid-template-rows: 1fr 3fr 1fr;
-    grid-template-columns: 1fr 4fr 1fr;
+
+.board {
+   display:flex;
+   height: 300px;
+   width: 100%;
+   justify-content:center;
 }
-#board {
-    height: 400px;
-    width: 1200px;
-    border: 4px solid brown;
-    grid-row: 2;
-    grid-column: 2;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
+.board div{
+    border: 1px grey solid;
+    padding: 10px;
+}
+.row {
+    width:50%;
+}
+.pocket {
+    display:flex;
+    width:20%;
+    justify-content: center;
+}
+.pocket1 {
+    height: 100%;
+    width: 50%;
+    border-radius:60%;
+    
+}
+.row1 {
+    height:50%;
+    display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-#board > div {
-    
-    margin: 5px;
-    border: 2px solid black;
-    border-radius: 50%;
-    height: 30%;
-    width: 30%;
     
 }
-#cell0 {
-    display: flex;
+.pocket2 {
+    height: 100%;
+    width:50%;
+    border-radius:60%;
 
 }
+.row2 {
+    height:50%;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.row1 div {
+    border-radius:50%;
+}
+.row2 div {
+    border-radius:50%;
+}
+
