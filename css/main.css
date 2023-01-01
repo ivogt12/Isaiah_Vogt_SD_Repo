@@ -5,51 +5,49 @@ h1 {
     text-align: center;
 }
 
-.board {
+#board {
    display:flex;
    height: 300px;
    width: 100%;
    justify-content:center;
 }
-.board div{
+#board div{
     border: 1px grey solid;
     padding: 10px;
 }
-.row {
+#row {
     width:50%;
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:center;
+    align-items:center;
+
+
 }
 .pocket {
     display:flex;
     width:20%;
     justify-content: center;
 }
-.pocket1 {
+#pocket0 {
     height: 100%;
     width: 50%;
     border-radius:60%;
     
 }
-.row1 {
-    height:50%;
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    
-}
-.pocket2 {
+
+#pocket1 {
     height: 100%;
     width:50%;
     border-radius:60%;
 
 }
-.row2 {
-    height:50%;
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-.row1 div {
+
+
+#row div {
     border-radius:50%;
-}
-.row2 div {
-    border-radius:50%;
+    height:30%;
+    width: 16%;
+
 }
 
