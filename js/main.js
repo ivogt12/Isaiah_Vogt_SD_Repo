@@ -17,10 +17,18 @@ let turn, board, winner
 
 /*----- cached element references -----*/
 const h1El = document.querySelector('h1')
-const boardEl = document.getElementById('board')
 const rowEl = document.getElementById('row')
-/*----- event listeners -----*/
-
+const marbleEl = document.getElementsByClassName('mar')
+marbleArr = []
+for(let i = 0; i < marbleEl.length; i++){
+    marbleArr.push(marbleEl[i])
+}
+// const newArr = []
+// for(let i = 0; i < marbleArr.length; i+= 4){
+//     const segment = marbleArr.slice(i, i + 4)
+//     newArr.push(segment)
+// }
+// console.log(newArr)
 
 
 /*----classes----*/
@@ -28,88 +36,93 @@ const rowEl = document.getElementById('row')
 class EachCell {
     constructor(domElement) {
         this.domElement = domElement
-        this.value = null
+        this.marbleEl = marbleEl
     }
-    renderLookup = {
-        5: 4,
-        4: 4,
-        3: 4,
-        2: 4,
-        1: 4,
-        0: 4,
-        6: 4,
-        7: 4,
-        8: 4,
-        9: 4,
-        10: 4,
-        11: 4,
-        
-    }
-    initialize() {
-        this.domElement.innerText = this.renderLookup[this.value]
-    }
-    render(c) {
-    
-        if (c >= 0){
-            for (let i = 0; i < c; i++) {
-                this.value += 1
-                this.renderLookup[this.value] += 1
-                console.log(this.value)
-                console.log(this.renderLookup[this.value])
-                this.initialize()
-            }
-        } else{
-
+    render() {
+        for( let i = 0; i < rowEl.children.length; i++) {
+            let id = rowEl.children[i].id[4]
+            let idx = Number(id)
+            rowEl.children[i].innerText = this.renderLookup[i]
         }
-        this.renderLookup[this.value] = '0'
-        this.initialize()
     }
 }
 
 class MancalaGame{
     constructor(rowEl) {
         this.rowEl = rowEl
-
         this.cellEl = [...rowEl.querySelectorAll('div')]
-        
-        this.cellEl.forEach((evt) => {
-            this.playerEach = new EachCell(evt)
-            let idx = this.cellEl.indexOf(evt)
-            this.playerEach.value = idx
-            this.playerEach.initialize()
-        })
-        
+        this.playerEach = new EachCell(this.rowEl)
         
         
         this.rowEl.addEventListener('click', evt => {
-            this.playerEach = new EachCell(evt.target)
-            let content = evt.target.innerText
-            let idx = evt.target.id[4]
-            let idx1 = Number(idx)
-            this.playerEach.value = idx1
-            this.playerEach.render(content)
+            let newArr = evt.target.children //htmlcol of marbles
+            let loopArr = [...newArr]
+
+            let loopLeng = loopArr.length
+            let pocket0El = document.getElementById('pocket0')
+            let pocket1El = document.getElementById('pocket1')
+            
+            loopArr.forEach((item, idx)=>{
+                // let destEl = document.getElementById('cell' + evt.target.id[4])
+                let num = Number(evt.target.id[4])
+                let num1 = num + (idx + 1)
+                let nextSib = document.getElementById('cell' + (num1.toString()))
+
+                if (num1 === 2 || num1 === 3){
+
+                    num1 = (num + idx + 9)
+                    if(num1 >= 12 ) {
+                        num1 = 0
+                    }
+                    console.log(num1)
+
+                    console.log('hi')
+
+                    if(evt.target.id[4] === '1' && num1 === 10){
+                        
+                        nextSib = document.getElementById('cell' + (num1.toString()))
+                        nextSib.appendChild(item)
+
+                        if (loopArr.length > 3 && num >=2 && idx === loopArr.length - 1 || loopArr.length > 4 && num >= 1 && idx === loopArr.length - 1 || loopArr.length > 5 && num >= 0 && idx === loopArr.length - 1){
+                            pocket1El.appendChild(item)
+                            }
+                        }
+                    else if(num1 === 11){
+                        console.log('hey')
+                        nextSib = document.getElementById('cell' + (num1.toString()))
+                        nextSib.appendChild(item)
+                        if (loopArr.length > 3 && num >=2 && idx === loopArr.length - 1 || loopArr.length > 4 && num >= 1 && idx === loopArr.length - 1 || loopArr.length > 5 && num >= 0 && idx === loopArr.length - 1){
+                            pocket1El.appendChild(item)
+                    }   
+
+                    }
+                }
+
+                }
+                else if(num1 > 4 || num1 > 1 || num1 < 2){
+                    console.log('yp')
+                    nextSib.appendChild(item)
+
+                    if (loopArr.length > 3 && num >=2 && idx === loopArr.length - 1 || loopArr.length > 4 && num >= 1 && idx === loopArr.length - 1 || loopArr.length > 5 && num >= 0 && idx === loopArr.length - 1){
+                        pocket0El.appendChild(item)
+                    }
+                    
+                }
             })
-    }
-
-
-    play() {
-        this.turn = 1
-        this.winner = null
+        })
     }
 }
+    
+// if id.length > 4, evt.target.id[5]
+//getElementById('cell`{toString(id + 10)}`')
+//`${}`
 
-
-
-
-
-
-
+    // play() {
+    //     this.turn = 1
+    //     this.winner = null
+    // }
+    // }
 /*----- functions -----*/
-
-
-
-
-
 function init() {
     game = new MancalaGame(rowEl)
 }
