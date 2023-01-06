@@ -100,3 +100,10 @@ h1 {
 [id='11']{
     order:12;
 }
+button{
+    margin-top: 10%;
+    background-color: black;
+    color:grey;
+    border-radius: 10vmin;
+    font-size: 35px;
+}
