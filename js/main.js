@@ -1,15 +1,3 @@
-/*-----constants-----*/
-const Players = {
-    '1': {
-        name: 'Player 1',
-    },
-    '-1' : {
-        name: 'Player 2',
-    }
-    
-}   
-
-
 /*------ state variables -----*/
 let turn, board, winner
 
