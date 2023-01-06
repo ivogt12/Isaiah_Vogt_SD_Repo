@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    background-color:rgb(219, 212, 212);
 }
 h1 {
     text-align: center;
@@ -26,6 +27,7 @@ h1 {
     display:flex;
     width:20%;
     justify-content: center;
+    background-color: lightcoral;
 }
 #pocket0 {
     height: 100%;
@@ -35,6 +37,7 @@ h1 {
     justify-content:center;
     align-items:center;
     flex-flow: row wrap;
+    backgr
 }
 #pocket1 {
     height: 100%;
@@ -53,6 +56,8 @@ h1 {
 .marble {
     display:flex;
     flex-flow: row wrap;
+    border:black;
+    background-color: lightgray;
 }
 #row div div {
     border-radius:50%;
@@ -63,6 +68,7 @@ h1 {
     height: 8%;
     width:4%;
     border-radius:50%;
+    background-color: purple;
 }
 [id='0'] {
     order:6;
