@@ -34,4 +34,5 @@ BrowserGame= https://ivogt12.github.io/Isaiah_Vogt_SD_Repo/
 
     -"namechange"(changed name of js directory)
 
-
+Resources:
+https://dev.to/turneremma21/circular-access-of-array-in-javascript-j52
