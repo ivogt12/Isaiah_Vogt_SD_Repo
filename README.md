@@ -6,6 +6,8 @@ BrowserGame: https://ivogt12.github.io/Isaiah_Vogt_SD_Repo/
 
 ![My Image](Mancala-wireframe.jpeg)
 
+![My Image](pseudocode-sc.png)
+
 ☐ Technologies Used: JavaScript, HTML, CSS
 
 ☐ Getting Started: In this section include the link to your deployed game and any instructions you deem important.
