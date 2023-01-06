@@ -10,9 +10,7 @@ BrowserGame: https://ivogt12.github.io/Isaiah_Vogt_SD_Repo/
 
 ☐ Technologies Used: JavaScript, HTML, CSS
 
-☐ Getting Started: In this section include the link to your deployed game and any instructions you deem important.
-
-☐ Next Steps: 
+☐ Icebox: 
     1)I want the marbles in each default pocket(at the start of the game) to be one of four assorted colors
     2)I want a timer to see hour long the game lasts
     3)I want there to be a sound effect when the marble moves
