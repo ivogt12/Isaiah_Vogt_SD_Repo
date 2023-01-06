@@ -111,4 +111,7 @@ button{
     color:grey;
     border-radius: 10vmin;
     font-size: 35px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }
