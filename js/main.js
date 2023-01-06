@@ -19,112 +19,99 @@ let turn, board, winner
 const h1El = document.querySelector('h1')
 const rowEl = document.getElementById('row')
 const marbleEl = document.getElementsByClassName('mar')
-marbleArr = []
-for(let i = 0; i < marbleEl.length; i++){
-    marbleArr.push(marbleEl[i])
-}
-// const newArr = []
-// for(let i = 0; i < marbleArr.length; i+= 4){
-//     const segment = marbleArr.slice(i, i + 4)
-//     newArr.push(segment)
-// }
-// console.log(newArr)
-
-
 /*----classes----*/
 
-class EachCell {
-    constructor(domElement) {
-        this.domElement = domElement
-        this.marbleEl = marbleEl
-    }
-    render() {
-        for( let i = 0; i < rowEl.children.length; i++) {
-            let id = rowEl.children[i].id[4]
-            let idx = Number(id)
-            rowEl.children[i].innerText = this.renderLookup[i]
-        }
-    }
-}
-
 class MancalaGame{
-    constructor(rowEl) {
+    constructor(rowEl, h1El) {
+        this.h1El = h1El
         this.rowEl = rowEl
-        this.cellEl = [...rowEl.querySelectorAll('div')]
-        this.playerEach = new EachCell(this.rowEl)
-        
-        
+        const cells = document.getElementsByClassName('marble')
+        let cellArr = [...cells]
+        let pocket0El = document.getElementById('pocket0')
+        let pocket1El = document.getElementById('pocket1')
+        let pocket0Size = pocket0El.children.length
+        let pocket1Size = pocket1El.children.length
+
+
         this.rowEl.addEventListener('click', evt => {
             let newArr = evt.target.children //htmlcol of marbles
             let loopArr = [...newArr]
-
-            let loopLeng = loopArr.length
-            let pocket0El = document.getElementById('pocket0')
-            let pocket1El = document.getElementById('pocket1')
+            let idOfArray = Number(evt.target.id)
             
             loopArr.forEach((item, idx)=>{
-                // let destEl = document.getElementById('cell' + evt.target.id[4])
-                let num = Number(evt.target.id[4])
-                let num1 = num + (idx + 1)
-                let nextSib = document.getElementById('cell' + (num1.toString()))
+                const n = cellArr.length
+                let index = (idx + idOfArray) + 1
+                let nextSib = cellArr[(index % n + n) % n]
 
-                if (num1 === 2 || num1 === 3){
-
-                    num1 = (num + idx + 9)
-                    if(num1 >= 12 ) {
-                        num1 = 0
-                    }
-                    console.log(num1)
-
-                    console.log('hi')
-
-                    if(evt.target.id[4] === '1' && num1 === 10){
+                if(loopArr.length > 5 && loopArr.length < 13 && idOfArray === 0 && idx === loopArr.length - 1 || loopArr.length > 4 && loopArr.length < 12 && idOfArray === 1 && idx === loopArr.length - 1
+                    ||loopArr.length > 3 && loopArr.length < 11 && idOfArray === 2 && idx === loopArr.length - 1 || loopArr.length > 2 && loopArr.length < 10 && idOfArray === 3 && idx === loopArr.length - 1 ||
+                        loopArr.length > 1 && loopArr.length < 9 && idOfArray === 4 && idx === loopArr.length - 1 || loopArr.length > 0 && loopArr.length < 8 && idOfArray === 5 && idx === loopArr.length - 1){
                         
-                        nextSib = document.getElementById('cell' + (num1.toString()))
-                        nextSib.appendChild(item)
-
-                        if (loopArr.length > 3 && num >=2 && idx === loopArr.length - 1 || loopArr.length > 4 && num >= 1 && idx === loopArr.length - 1 || loopArr.length > 5 && num >= 0 && idx === loopArr.length - 1){
-                            pocket1El.appendChild(item)
-                            }
-                        }
-                    else if(num1 === 11){
-                        console.log('hey')
-                        nextSib = document.getElementById('cell' + (num1.toString()))
-                        nextSib.appendChild(item)
-                        if (loopArr.length > 3 && num >=2 && idx === loopArr.length - 1 || loopArr.length > 4 && num >= 1 && idx === loopArr.length - 1 || loopArr.length > 5 && num >= 0 && idx === loopArr.length - 1){
-                            pocket1El.appendChild(item)
-                    }   
-
-                    }
-                }
-
-                }
-                else if(num1 > 4 || num1 > 1 || num1 < 2){
-                    console.log('yp')
-                    nextSib.appendChild(item)
-
-                    if (loopArr.length > 3 && num >=2 && idx === loopArr.length - 1 || loopArr.length > 4 && num >= 1 && idx === loopArr.length - 1 || loopArr.length > 5 && num >= 0 && idx === loopArr.length - 1){
                         pocket0El.appendChild(item)
-                    }
+
+                     }else if(loopArr.length > 5 && loopArr.length < 13 && idOfArray === 6 && idx === loopArr.length - 1 || loopArr.length > 4 && loopArr.length < 12 && idOfArray >= 7 
+                                && idx === loopArr.length - 1||loopArr.length > 3 && loopArr.length < 11 && idOfArray === 8 && idx === loopArr.length - 1 || loopArr.length > 2 && loopArr.length < 10 
+                                && idOfArray === 9 && idx === loopArr.length - 1 || loopArr.length > 1 && loopArr.length < 9 && idOfArray === 10 && idx === loopArr.length - 1 || loopArr.length > 0 
+                                && loopArr.length < 8 && idOfArray === 11 && idx === loopArr.length - 1){
                     
-                }
+                        pocket1El.appendChild(item)
+                    
+                    }else if(idOfArray === 0 && loopArr.length > 12 || idOfArray === 1 && loopArr.length > 11 || idOfArray === 2 && loopArr.length > 10 || idOfArray === 3 && loopArr.length > 9 
+                                || idOfArray === 4 && loopArr.length > 8 || idOfArray === 5 && loopArr.length > 7){
+                        if(idx === loopArr.length - 2){
+
+                            pocket1El.appendChild(item)
+                        } else if(idx === loopArr.length - 1){
+
+                            pocket0El.appendChild(item)
+                        } else nextSib.appendChild(item)
+                    }else if(idOfArray === 6 && loopArr.length > 12 || idOfArray === 7 && loopArr.length > 11 || idOfArray === 8 && loopArr.length > 10 || idOfArray === 9 && loopArr.length > 9 
+                                || idOfArray === 10 && loopArr.length > 8 || idOfArray === 11 && loopArr.length > 7){
+                        if(idx === loopArr.length - 2){
+
+                            pocket0El.appendChild(item)
+                        } else if(idx === loopArr.length - 1){
+    
+                            pocket1El.appendChild(item)
+                            } else nextSib.appendChild(item)
+                        }
+                else nextSib.appendChild(item)
             })
+            this.turn *= -1
+            this.winner = this.getWinner(pocket0Size, pocket0Size)
+            this.render()
+            console.log(cells.length)
+            
         })
     }
-}
+    play() {
+        this.turn = 1
+        this.winner = null
+        this.render()
+    }
+    getWinner(el0, el1){
+        if (el0 > el1)
+            return 1
+         else if(el0 > el1)
+            return 2
+        else return null
+    }   
+    render(){
+       if(this.winner !== null){
+            this.h1El.innerHTML = `Player ${this.winner === 1 ? 1 : 2} Wins!`
+        } else{
+            this.h1El.innerHTML = `Player ${this.turn === 1 ? 1 : 2}'s Turn`
+        }
+    }
     
-// if id.length > 4, evt.target.id[5]
-//getElementById('cell`{toString(id + 10)}`')
-//`${}`
+    
+}
 
-    // play() {
-    //     this.turn = 1
-    //     this.winner = null
-    // }
-    // }
+    
 /*----- functions -----*/
 function init() {
-    game = new MancalaGame(rowEl)
+    game = new MancalaGame(rowEl, h1El)
+    game.play()
 }
 
 /*----- init -----*/
